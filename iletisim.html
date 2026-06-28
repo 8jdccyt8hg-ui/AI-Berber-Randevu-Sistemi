@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>İletişim — BerberBul İstanbul</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="navbar-slot"></div>
+
+  <div class="page-header">
+    <div class="container">
+      <nav class="breadcrumb"><a href="index.html">Ana Sayfa</a> / İletişim</nav>
+      <h1 class="page-title">İletişim</h1>
+      <p class="page-subtitle">Sorularınız ve önerileriniz için bize ulaşın</p>
+    </div>
+  </div>
+
+  <main>
+    <div class="container contact-layout">
+      <div class="contact-info-card">
+        <h3>📬 Bize Ulaşın</h3>
+        <div class="contact-item">
+          <div class="icon">📧</div>
+          <div><strong>E-posta</strong><span>info@berberbul.com</span></div>
+        </div>
+        <div class="contact-item">
+          <div class="icon">📞</div>
+          <div><strong>Telefon</strong><span>0212 000 00 00</span></div>
+        </div>
+        <div class="contact-item">
+          <div class="icon">📍</div>
+          <div><strong>Adres</strong><span>İstanbul, Türkiye</span></div>
+        </div>
+        <div class="contact-item">
+          <div class="icon">🕐</div>
+          <div><strong>Çalışma Saatleri</strong><span>Pzt — Cmt: 09:00 — 18:00</span></div>
+        </div>
+        <div class="contact-item">
+          <div class="icon">✂</div>
+          <div><strong>Berber Ortaklığı</strong><span>partner@berberbul.com</span></div>
+        </div>
+      </div>
+
+      <div class="contact-form-card">
+        <h2 style="font-size:1.3rem;margin-bottom:8px;">Mesaj Gönder</h2>
+        <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:24px;">Formu doldurun, en kısa sürede size dönüş yapalım.</p>
+        <div class="form-group">
+          <label>Ad Soyad</label>
+          <input type="text" id="iletisimAd" placeholder="Adınız Soyadınız">
+        </div>
+        <div class="form-group">
+          <label>E-posta</label>
+          <input type="email" id="iletisimEmail" placeholder="ornek@email.com">
+        </div>
+        <div class="form-group">
+          <label>Konu</label>
+          <input type="text" id="iletisimKonu" placeholder="Mesaj konusu">
+        </div>
+        <div class="form-group">
+          <label>Mesaj</label>
+          <textarea id="iletisimMesaj" rows="5" style="width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:0.9rem;resize:vertical;" placeholder="Mesajınızı yazın..."></textarea>
+        </div>
+        <button class="btn btn-primary" style="width:100%;" onclick="mesajGonder()">Gönder</button>
+        <div id="iletisimSuccess" class="success-msg">Mesajınız alındı! En kısa sürede dönüş yapacağız.</div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="map-placeholder">🗺 İstanbul Haritası — BerberBul kapsama alanı: Beşiktaş, Kadıköy, Şişli, Üsküdar, Fatih, Sarıyer</div>
+    </div>
+  </main>
+
+  <div id="footer-slot"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/components.js"></script>
+  <script>
+    function mesajGonder() {
+      const ad = document.getElementById("iletisimAd").value.trim();
+      const email = document.getElementById("iletisimEmail").value.trim();
+      const mesaj = document.getElementById("iletisimMesaj").value.trim();
+      if (!ad || !email || !mesaj) { alert("Lütfen zorunlu alanları doldurun."); return; }
+      document.getElementById("iletisimSuccess").classList.add("active");
+      document.getElementById("iletisimAd").value = "";
+      document.getElementById("iletisimEmail").value = "";
+      document.getElementById("iletisimKonu").value = "";
+      document.getElementById("iletisimMesaj").value = "";
+    }
+  </script>
+</body>
+</html>

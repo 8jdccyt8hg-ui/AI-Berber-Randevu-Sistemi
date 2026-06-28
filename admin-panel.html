@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yönetim Paneli — BerberBul İstanbul</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="navbar-slot"></div>
+
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar-brand">
+        <h3 id="sidebarBerberAd">Berber</h3>
+        <p id="sidebarIlce">İlçe</p>
+      </div>
+      <nav class="admin-nav">
+        <a class="active" data-tab="ozet">📊 Genel Bakış</a>
+        <a data-tab="takvim">📅 Takvim</a>
+        <a data-tab="randevular">📋 Randevular</a>
+        <a data-tab="analiz">📈 Boşluk Analizi</a>
+      </nav>
+      <div style="padding:24px;">
+        <button class="btn btn-outline" style="width:100%;color:#fff;border-color:rgba(255,255,255,0.2);" onclick="cikisYap()">Çıkış Yap</button>
+      </div>
+    </aside>
+
+    <!-- Ana İçerik -->
+    <div class="admin-main">
+      <div class="admin-mobile-tabs" id="mobileTabs">
+        <button class="active" data-tab="ozet">Genel Bakış</button>
+        <button data-tab="takvim">Takvim</button>
+        <button data-tab="randevular">Randevular</button>
+        <button data-tab="analiz">Analiz</button>
+      </div>
+      <div class="admin-topbar">
+        <h2>✂ <span id="adminBerberAd">Yönetim Paneli</span></h2>
+        <a href="index.html" class="btn btn-outline btn-sm">Siteye Dön</a>
+      </div>
+
+      <!-- Özet Tab -->
+      <div id="tab-ozet" class="admin-tab active">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">📅</div>
+            <div class="stat-value" id="statBugun">0</div>
+            <div class="stat-label">Bugünkü Randevu</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📆</div>
+            <div class="stat-value" id="statHafta">0</div>
+            <div class="stat-label">Bu Haftaki Randevu</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📊</div>
+            <div class="stat-value" id="statToplam">0</div>
+            <div class="stat-label">Toplam Randevu</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">⏰</div>
+            <div class="stat-value" id="statSonrakiBos" style="font-size:1.4rem;">—</div>
+            <div class="stat-label">Sonraki Boş Saat (Bugün)</div>
+          </div>
+        </div>
+
+        <div class="admin-section">
+          <h3>🆕 Son Randevular</h3>
+          <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:12px;">Müşterilerden gelen en son randevular burada görünür.</p>
+          <div id="sonRandevular"></div>
+        </div>
+
+        <div class="admin-section">
+          <h3>📅 Takvim Özeti</h3>
+          <div class="form-group">
+            <label>Tarih</label>
+            <input type="date" id="adminTakvimTarih" onchange="adminTakvimGuncelle()">
+          </div>
+          <table class="takvim-table">
+            <tbody id="takvimBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Takvim Tab -->
+      <div id="tab-takvim" class="admin-tab">
+        <div class="admin-section">
+          <h3>📅 Takvim Görünümü</h3>
+          <div class="form-group">
+            <label>Tarih Seç</label>
+            <input type="date" id="adminTakvimTarih2" onchange="adminTakvimGuncelle2()">
+          </div>
+          <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:16px;">
+            <span style="display:inline-block;width:12px;height:12px;background:#fef2f2;border:1px solid #fecaca;border-radius:2px;margin-right:4px;"></span> Dolu &nbsp;
+            <span style="display:inline-block;width:12px;height:12px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:2px;margin-right:4px;"></span> Boş
+          </p>
+          <table class="takvim-table">
+            <tbody id="takvimBody2"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Randevular Tab -->
+      <div id="tab-randevular" class="admin-tab">
+        <div class="admin-section">
+          <h3>📋 Randevu Listesi</h3>
+          <div class="date-filter-row">
+            <div class="filter-group">
+              <label>Başlangıç</label>
+              <input type="date" id="listeBaslangic">
+            </div>
+            <div class="filter-group">
+              <label>Bitiş</label>
+              <input type="date" id="listeBitis">
+            </div>
+            <button class="btn btn-accent" onclick="randevuListesiGuncelle()">Filtrele</button>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Tarih</th>
+                  <th>Saat</th>
+                  <th>Müşteri</th>
+                  <th>Telefon</th>
+                  <th>İşlem</th>
+                  <th>Sil</th>
+                </tr>
+              </thead>
+              <tbody id="randevuListBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Analiz Tab -->
+      <div id="tab-analiz" class="admin-tab">
+        <div class="admin-section">
+          <h3>📈 Bu Hafta Boş Saatler</h3>
+          <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:16px;">
+            Bugünden itibaren 7 günlük doluluk analizi. %80 üzeri kırmızı, %50-80 sarı, %50 altı yeşil.
+          </p>
+          <div style="overflow-x:auto;">
+            <table class="analiz-table">
+              <thead>
+                <tr>
+                  <th>Gün</th>
+                  <th>Toplam Slot</th>
+                  <th>Dolu</th>
+                  <th>Boş</th>
+                  <th>Doluluk</th>
+                </tr>
+              </thead>
+              <tbody id="analizBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Berber Girişi — BerberBul İstanbul</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="navbar-slot"></div>
+
+  <main class="admin-login-page">
+    <div class="login-card">
+      <div class="logo-icon" style="display:flex;">✂</div>
+      <h2>Berber Girişi</h2>
+      <p class="login-subtitle">Yönetim paneline erişmek için giriş yapın</p>
+
+      <div class="form-group">
+        <label>Kullanıcı Adı</label>
+        <input type="text" id="adminKullanici" placeholder="kullanici adi">
+      </div>
+      <div class="form-group">
+        <label>Şifre</label>
+        <input type="password" id="adminSifre" placeholder="şifre" onkeydown="if(event.key==='Enter')girisYap()">
+      </div>
+      <div id="girisHata" class="error-msg">Hatalı bilgi.</div>
+      <button class="btn btn-primary" style="width:100%;" onclick="girisYap()">Giriş Yap</button>
+
+      <div class="login-hint">
+        Demo hesaplar: <strong>maestro</strong>, <strong>vintage</strong>, <strong>gentleman</strong> — Şifre: <strong>1234</strong>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-slot"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/admin.js"></script>
+  <script>
+    // Zaten giriş yapılmışsa panele yönlendir
+    if (sessionStorage.getItem("berberbul_admin")) {
+      window.location.href = "admin-panel.html";
+    }
+  </script>
+</body>
+</html>

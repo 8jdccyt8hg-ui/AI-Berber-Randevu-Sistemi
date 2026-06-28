@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Berberler — BerberBul İstanbul</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="navbar-slot"></div>
+
+  <div class="page-header">
+    <div class="container">
+      <nav class="breadcrumb"><a href="index.html">Ana Sayfa</a> / Berberler</nav>
+      <h1 class="page-title">İstanbul Berberleri</h1>
+      <p class="page-subtitle">6 ilçede 6 seçkin berber salonu — filtrele, karşılaştır ve randevu al</p>
+    </div>
+  </div>
+
+  <main>
+    <div class="container" style="padding: 48px 20px 80px;">
+      <div class="filter-bar">
+        <div class="filter-group">
+          <label>İlçe</label>
+          <select id="filtreIlce">
+            <option value="">Tümü</option>
+            <option value="Beşiktaş">Beşiktaş</option>
+            <option value="Kadıköy">Kadıköy</option>
+            <option value="Şişli">Şişli</option>
+            <option value="Üsküdar">Üsküdar</option>
+            <option value="Fatih">Fatih</option>
+            <option value="Sarıyer">Sarıyer</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Sırala</label>
+          <select id="filtreSiralama">
+            <option value="puan">Puana Göre</option>
+            <option value="fiyat-asc">Fiyata Göre (artan)</option>
+            <option value="fiyat-desc">Fiyata Göre (azalan)</option>
+          </select>
+        </div>
+        <button class="btn btn-accent" onclick="filtrele()">Uygula</button>
+      </div>
+
+      <div id="berberGrid" class="berber-grid"></div>
+    </div>
+  </main>
+
+  <div id="footer-slot"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/berberler.js"></script>
+</body>
+</html>

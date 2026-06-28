@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Saç Önerisi — BerberBul İstanbul</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="navbar-slot"></div>
+
+  <div class="page-header">
+    <div class="container">
+      <nav class="breadcrumb"><a href="index.html">Ana Sayfa</a> / AI Öneri</nav>
+      <h1 class="page-title">Sana Uygun Berberi Bul</h1>
+      <p class="page-subtitle">Saç tipini ve istediğin stili yaz, AI sana en uygun berberi önersin</p>
+    </div>
+  </div>
+
+  <main>
+    <div class="container ai-page-layout">
+      <div class="ai-input-card">
+        <h2>🤖 AI Berber Asistanı</h2>
+        <p>Saç tipin, istediğin stil ve tercih ettiğin ilçe hakkında bilgi ver. Gemini AI en uygun berberleri önerecek.</p>
+
+        <textarea id="aiInput" class="ai-textarea" placeholder="Örn: Kıvırcık saçım var, fade + sakal şekillendirme istiyorum.&#10;Beşiktaş veya Şişli civarında olsun."></textarea>
+
+        <button id="aiBtn" class="btn btn-primary btn-lg" style="width:100%;" onclick="aiOner()">✦ AI ile Berber Öner</button>
+
+        <div class="ai-examples">
+          <h4>Örnek istekler (tıkla):</h4>
+          <span class="example-chip" onclick="ornekYaz('Kıvırcık saçım var, fade istiyorum. Beşiktaş civarı.')">Kıvırcık + Fade</span>
+          <span class="example-chip" onclick="ornekYaz('Pompadour ve sakal şekillendirme. Kadıköy veya Üsküdar.')">Pompadour + Sakal</span>
+          <span class="example-chip" onclick="ornekYaz('Çocuğum için güvenli berber. Şişli veya Fatih.')">Çocuk Kesimi</span>
+          <span class="example-chip" onclick="ornekYaz('Saç boyası ve keratin. Uygun fiyatlı olsun.')">Boya + Keratin</span>
+        </div>
+      </div>
+
+      <div class="ai-result-card">
+        <h3>✦ AI Analiz Sonucu</h3>
+        <div id="aiLoading" class="ai-loading">
+          <span class="scissors-anim">✂</span>
+          <span>AI analiz ediyor...</span>
+        </div>
+        <div id="aiResult">
+          <p class="ai-placeholder">Saç tipini ve isteklerini yazıp "AI ile Berber Öner" butonuna bas. Sonuçlar burada görünecek.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" id="onerilenBerberler"></div>
+  </main>
+
+  <div id="footer-slot"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/ai.js"></script>
+</body>
+</html>

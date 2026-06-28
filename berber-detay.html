@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Berber Detay — BerberBul İstanbul</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="navbar-slot"></div>
+
+  <div class="page-header">
+    <div class="container">
+      <nav class="breadcrumb"><a href="index.html">Ana Sayfa</a> / <a href="berberler.html">Berberler</a> / <span id="breadcrumbAd">Detay</span></nav>
+      <h1 class="page-title" id="headerAd">Berber Detayı</h1>
+      <p class="page-subtitle" id="headerIlce"></p>
+    </div>
+  </div>
+
+  <main>
+    <div class="container detay-layout">
+      <!-- Sol: Bilgiler -->
+      <div>
+        <div class="detay-hero-card">
+          <div class="detay-banner" id="detayBanner">
+            <div class="detay-banner-content">
+              <div class="berber-avatar-lg" id="detayAvatar">MB</div>
+              <div style="color:#fff;padding-bottom:8px;">
+                <h2 id="detayAd" style="color:#fff;font-size:1.5rem;"></h2>
+                <p id="detayIlce" style="opacity:0.85;font-size:0.9rem;"></p>
+              </div>
+            </div>
+          </div>
+          <div class="detay-info">
+            <div class="detay-stats">
+              <div class="detay-stat"><strong id="detayPuan">—</strong><span>Puan</span></div>
+              <div class="detay-stat"><strong id="detayYorum">—</strong><span>Yorum</span></div>
+              <div class="detay-stat"><strong id="detayFiyat">—</strong><span>Ücret</span></div>
+              <div class="detay-stat"><strong id="detaySeans">—</strong><span>Seans</span></div>
+            </div>
+            <p id="detayAciklama" style="margin-bottom:16px;color:var(--text-muted);"></p>
+            <div class="badges" id="detayUzmanlik"></div>
+            <ul class="info-list">
+              <li><span class="icon">📍</span><span id="detayAdres"></span></li>
+              <li><span class="icon">📞</span><span id="detayTelefon"></span></li>
+              <li><span class="icon">🕐</span>Çalışma Saatleri: <span id="detaySaat"></span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="admin-section reviews-section">
+          <h3>⭐ Müşteri Yorumları</h3>
+          <div id="detayYorumlar"></div>
+        </div>
+      </div>
+
+      <!-- Sağ: Randevu -->
+      <div class="randevu-panel" id="randevu">
+        <h3>📅 Randevu Al</h3>
+        <div class="randevu-steps">
+          <div class="step-dot active"></div>
+          <div class="step-dot"></div>
+          <div class="step-dot"></div>
+        </div>
+
+        <div class="form-group">
+          <label>Tarih Seçin</label>
+          <input type="date" id="modalTarih" onchange="modalTarihDegisti()">
+        </div>
+
+        <label style="font-size:0.82rem;font-weight:600;color:var(--text-muted);display:block;margin-bottom:8px;">Müsait Saatler</label>
+        <div id="slotGrid" class="slot-grid"></div>
+
+        <div id="randevuForm" style="display:none;">
+          <div class="form-group">
+            <label>Ad Soyad</label>
+            <input type="text" id="formAd" placeholder="Adınız Soyadınız">
+          </div>
+          <div class="form-group">
+            <label>Telefon</label>
+            <input type="tel" id="formTel" placeholder="05XX XXX XX XX">
+          </div>
+          <div class="form-group">
+            <label>İstek / İşlem</label>
+            <input type="text" id="formIslem" placeholder="Saç + sakal, fade...">
+          </div>
+          <button class="btn btn-primary" style="width:100%;" onclick="randevuAl()">Randevu Al</button>
+        </div>
+
+        <div id="randevuSuccess" class="success-msg"></div>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-slot"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/randevu.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const id = urlParam("id");
+      const b = berberBul(id);
+      if (b) {
+        document.getElementById("breadcrumbAd").textContent = b.ad;
+        document.getElementById("headerAd").textContent = b.ad;
+        document.getElementById("headerIlce").textContent = b.ilce + " · " + b.adres;
+      }
+    });
+  </script>
+</body>
+</html>
